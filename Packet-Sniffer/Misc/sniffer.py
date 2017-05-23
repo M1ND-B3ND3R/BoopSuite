@@ -20,26 +20,26 @@ def sniff_packets( packet ):
 			if packet.type == 0:
 				if packet.subtype == 4:
 					Thread_handler = Thread( target=probereq.handler_probereq, args=[packet])
-					Thread_handler.start();
+					Thread_handler.start()
 
 
 				elif packet.subtype == 5:
-					Thread_handler = Thread( target=proberes.handler_proberes, args=[packet]);
-					Thread_handler.start();
+					Thread_handler = Thread( target=proberes.handler_proberes, args=[packet])
+					Thread_handler.start()
 
 
 				elif packet.subtype == 8:
-					Thread_handler = Thread( target=beacon.handler_beacon, args=[packet]);
-					Thread_handler.start();
+					Thread_handler = Thread( target=beacon.handler_beacon, args=[packet])
+					Thread_handler.start()
 
 			elif packet.type == 2:
 				if packet.addr1 not in confg.IGNORE and packet.addr2 not in confg.IGNORE:
-					Thread_handler = Thread(target=data.handler_data, args=[packet]);
-					Thread_handler.start();
+					Thread_handler = Thread(target=data.handler_data, args=[packet])
+					Thread_handler.start()
 
 				if packet.haslayer(EAPOL):
-					Thread_handler = Thread(target=eap.handler_eap, args=[packet]);
-					Thread_handler.start();
+					Thread_handler = Thread(target=eap.handler_eap, args=[packet])
+					Thread_handler.start()
 	except:
-		pass;
-	return;
+		pass
+	return
